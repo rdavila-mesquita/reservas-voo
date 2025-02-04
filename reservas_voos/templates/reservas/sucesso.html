@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/1358/1358696.png">
+    <title>Reserva Confirmada</title>
+
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+    }
+
+    .card {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        width: 100%;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    h1 {
+        color: #007bff;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 15px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>🎉 Reserva Confirmada!</h1>
+
+        <p>Obrigado, <strong>{{ reserva.nome_comprador }}</strong>, por reservar seu voo.</p>
+        <p>✈️ Destino: <strong>{{ reserva.voo.destino }}</strong></p>
+        <p>📅 Data de Ida: <strong>{{ reserva.ida }}</strong></p>
+        <p>📅 Data de Volta: <strong>{{ reserva.volta }}</strong></p>
+
+        <a href="{% url 'lista_voos' %}" class="btn">Voltar para a página inicial</a>
+    </div>
+
+</body>
+</html>

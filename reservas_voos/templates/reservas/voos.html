@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/1358/1358696.png">
+    <title>Reserva de Voos</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+        .voos-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            width: 260px;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .card a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .card a:hover {
+            background-color: #0056b3;
+        }
+        .btn-container {
+            margin-top: 20px;
+        }
+        .btn {
+            text-decoration: none;
+            color: white;
+            background-color: #28a745;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reserva de voos</h1>
+        <h3>Saída: Jaguaruana</h3>
+        <div class="voos-container">
+            {% for voo in voos %}
+                <div class="card">
+                    {% if voo.imagem_url %}
+                        <img src="{{ voo.imagem_url }}" alt="Imagem de {{ voo.destino }}">
+                    {% else %}
+                        <p>Imagem não disponível</p>
+                    {% endif %}
+                    <h2>{{ voo.origem }} → {{ voo.destino }}</h2>
+                    <p><strong>Ida:</strong> {{ voo.data_voo }}</p>
+                    <p><strong>Partida:</strong> {{ voo.horario_partida }}</p>
+                    <p><strong>Chegada:</strong> {{ voo.horario_chegada }}</p>
+                    <p><strong>A partir de:</strong> R$ {{ voo.valor }}</p>
+                    <a href="{% url 'reserva_voo' voo.id %}">Reservar</a>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="btn-container">
+            <a href="{% url 'lista_reservas' %}" class="btn">Mostrar Reservas</a>
+        </div>
+    </div>
+</body>
+</html>
